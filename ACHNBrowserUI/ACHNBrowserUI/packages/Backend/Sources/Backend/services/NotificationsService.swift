@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  NotificationsService .swift
 //  
 //
 //  Created by Rohan Ramakrishnan on 6/14/20.
@@ -10,18 +10,18 @@ import Foundation
 public class NotificationsService {
     public static var shared = NotificationsService()
     
-    public var shopSettingsEnabled: Bool = false {
+    public var shopNotificationsEnabled: Bool = false {
         didSet {
             NotificationManager.shared.removeShopNotifications()
-            if shopSettingsEnabled {
+            if shopNotificationsEnabled {
                 registerShopNotifications()
             }
         }
     }
-    public var eventSettingsEnabled: Bool = false {
+    public var eventNotificationsEnabled: Bool = false {
         didSet {
             NotificationManager.shared.removeShopNotifications()
-            if eventSettingsEnabled {
+            if eventNotificationsEnabled {
                 // TODO function for registering events
             }
         }

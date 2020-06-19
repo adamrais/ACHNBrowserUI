@@ -66,7 +66,8 @@ struct Sheet: View {
         case .about:
             return AnyView(AboutView())
         case .settings(let subManager, let collection):
-            return AnyView(SettingsView()
+            let viewModel = NotificationsViewModel()
+            return AnyView(SettingsView(viewModel: viewModel)
                 .environmentObject(subManager)
                 .environmentObject(collection))
         case .turnipsForm(let subManager):

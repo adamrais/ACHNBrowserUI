@@ -14,6 +14,7 @@ struct SettingsView: View {
     @EnvironmentObject private var collection: UserCollection
     @EnvironmentObject private var subscriptionManager: SubscriptionManager
     @Environment(\.presentationMode) private var presentationMode
+    @ObservedObject private var viewModel: NotificationsViewModel
     @ObservedObject var appUserDefaults = AppUserDefaults.shared
     
     @State private var isDocumentPickerPresented = false
@@ -21,6 +22,11 @@ struct SettingsView: View {
     @State private var importedFile: URL?
     @State private var showSuccessImportAlert = false
     @State private var showDeleteConfirmationAlert = false
+    
+    init(viewModel: NotificationsViewModel) {
+        self.viewModel = viewModel
+    }
+    
     var body: some View {
         NavigationView {
             Form {
@@ -158,20 +164,12 @@ struct SettingsView: View {
     
     private var notificationSection: some View {
         Section(header: SectionHeaderView(text: "Notifications", icon: "clock")) {
-            Toggle(isOn: $appUserDefaults.shopNotificationsEnabled ) {
+            Toggle(isOn: $viewModel.shopNotificationsEnabled) {
                 Text("When shops open/close")
             }
             
-            Toggle(isOn: $appUserDefaults.specialEventNotificationsEnabled) {
+            Toggle(isOn: $viewModel.eventNotificationsEnabled) {
                 Text("Special Events")
-            }
-            
-            Toggle(isOn: $appUserDefaults.isTurnipPriceChangesOn) {
-                Text("Turnip Price Changes")
-            }
-            
-            Toggle(isOn: $appUserDefaults.isTurnipSellBuyOn) {
-                Text("Turnip Sell/Buy reminder")
             }
         }
     }
@@ -234,7 +232,7 @@ struct SettingsView: View {
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView()
+        SettingsView(viewModel: NotificationsViewModel())
             .environmentObject(SubscriptionManager.shared)
             .environmentObject(UserCollection.shared)
     }

@@ -9,6 +9,19 @@
 import Foundation
 import Combine
 import Backend
+
 class NotificationsViewModel: ObservableObject {
     
+    private static let appUserDefaults = AppUserDefaults.shared
+    
+    @Published var shopNotificationsEnabled = appUserDefaults.shopNotificationsEnabled {
+        didSet {
+            NotificationsService.shared.shopNotificationsEnabled = shopNotificationsEnabled
+        }
+    }
+    @Published var eventNotificationsEnabled = appUserDefaults.specialEventNotificationsEnabled {
+        didSet {
+            NotificationsService.shared.eventNotificationsEnabled = eventNotificationsEnabled
+        }
+    }
 }
