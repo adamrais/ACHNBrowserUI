@@ -24,4 +24,6 @@ class NotificationsViewModel: ObservableObject {
             NotificationsService.shared.eventNotificationsEnabled = eventNotificationsEnabled
         }
     }
+    
+    @Published var useDeviceTime = appUserDefaults.isGameTimeInSync
 }

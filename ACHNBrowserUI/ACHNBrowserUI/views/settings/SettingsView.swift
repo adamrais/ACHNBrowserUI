@@ -129,11 +129,6 @@ struct SettingsView: View {
                         Text(LocalizedStringKey(service.rawValue.capitalized)).tag(service)
                     }
             }
-            
-            Toggle(isOn: $appUserDefaults.isGameTimeInSync ) {
-                Text("Use device time for notifications")
-            }
-
         }
     }
     
@@ -165,11 +160,15 @@ struct SettingsView: View {
     private var notificationSection: some View {
         Section(header: SectionHeaderView(text: "Notifications", icon: "clock")) {
             Toggle(isOn: $viewModel.shopNotificationsEnabled) {
-                Text("When shops open/close")
+                Text("Enable shop notifications")
             }
             
             Toggle(isOn: $viewModel.eventNotificationsEnabled) {
-                Text("Special Events")
+                Text("Enable special event notifications")
+            }
+            
+            Toggle(isOn: $viewModel.useDeviceTime) {
+                Text("Use device time for notifications")
             }
         }
     }
