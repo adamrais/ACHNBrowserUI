@@ -124,10 +124,8 @@ struct SettingsView: View {
                     }
             }
             
-            HStack {
-                Toggle(isOn: $appUserDefaults.isGameTimeInSync ) {
-                    Text("Use device time for notifications")
-                }
+            Toggle(isOn: $appUserDefaults.isGameTimeInSync ) {
+                Text("Use device time for notifications")
             }
 
         }
@@ -160,28 +158,20 @@ struct SettingsView: View {
     
     private var notificationSection: some View {
         Section(header: SectionHeaderView(text: "Notifications", icon: "clock")) {
-            HStack {
-                Toggle(isOn: $appUserDefaults.shopNotificationsEnabled ) {
-                    Text("When shops open/close")
-                }
+            Toggle(isOn: $appUserDefaults.shopNotificationsEnabled ) {
+                Text("When shops open/close")
             }
             
-            HStack {
-                Toggle(isOn: $appUserDefaults.specialEventNotificationsEnabled) {
-                    Text("Special Events")
-                }
+            Toggle(isOn: $appUserDefaults.specialEventNotificationsEnabled) {
+                Text("Special Events")
             }
             
-            HStack {
-                Toggle(isOn: $appUserDefaults.isTurnipPriceChangesOn) {
-                    Text("Turnip Price Changes")
-                }
+            Toggle(isOn: $appUserDefaults.isTurnipPriceChangesOn) {
+                Text("Turnip Price Changes")
             }
             
-            HStack {
-                Toggle(isOn: $appUserDefaults.isTurnipSellBuyOn) {
-                    Text("Turnip Sell/Buy reminder")
-                }
+            Toggle(isOn: $appUserDefaults.isTurnipSellBuyOn) {
+                Text("Turnip Sell/Buy reminder")
             }
         }
     }
